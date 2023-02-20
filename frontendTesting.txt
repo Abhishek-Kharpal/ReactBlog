@@ -1,0 +1,80 @@
+Ensures code matches the requirements and design specifications
+
+Unit testing -> testing of individual units of code
+Integration testing -> testing of the interaction between units of code
+System testing -> testing of the entire system
+
+Regression bugs -> bugs that are introduced by a change to the code
+It is a Big issue as harder to debug and fix.
+
+Its not about coverage, its about testing the right and meaningful things.
+Tests descriptions are really important as they are the documentation of the test, so if someone else needs to understand the feature, they can read the test and understand it.
+
+Functional programming in parallel to unit tests is a good idea, as it helps to understand the code and the requirements.
+It is like designing a robot which can do a task, and then writing the code to make it do that task.
+
+Consider edge cases like size of counter value.
+
+Frontend testing approach:
+1. Select elements on the screen
+2. Interact with elements.
+3. Make assertions about the elements.
+4. Cover the edge cases.
+5. Code should be robust.
+
+Library: react-testing-library(rendering,firing events,etc). Role of jest is to be the code runner. But in our tests only rtl is running.
+
+import {render} from 'react-testing-library';
+import Counter from './Counter';
+
+describe('Counter',()=>{
+  it('should display 0 when renders for the first time',()=>{
+    const {queryByText}=render(<Counter/>);
+    const counterElement=queryByText('0');
+    expect(counterElement).toBeInTheDocument();
+              OR
+    expect(queryByText('0')).toBeTruthy();
+  });
+
+  describe('increment',()=>{
+    it('should increment the counter value by 1 when clicked',()=>{
+      const {queryByText,getByText}=render(<Counter/>);
+      const incrementButton=getByText('+');
+      expect(queryByText('1')).toBeFalsy();
+      fireEvent.click(incrementButton);
+      expect(queryByText('1')).toBeTruthy();
+    });
+  });
+
+  describe('decrement',()=>{
+    it('should decerement the counter value by 1 when counter value is greater than 0 and is clicked',()=>{
+      const {queryByText,getByText}=render(<Counter/>);
+      const incrementButton=getByText('+');
+      fireEvent.click(incrementButton);
+      const decrementButton=getByText('-');
+      fireEvent.click(decrementButton);
+      expect(queryByText('0')).toBeTruthy();
+    });
+
+    it('should have counter value as 0 when counter value is 0 and is clicked',()=>{
+      const {queryByText,getByText}=render(<Counter/>);
+      const decrementButton=getByText('-');
+      fireEvent.click(decrementButton);
+      expect(queryByText('0')).toBeTruthy();
+    });
+  });
+
+});
+
+Try to make tests independant of each other.
+
+Snapshot testing -> testing the UI of the component. For Dumb Components. Its going to render component and take image of dom tree and try to match it with the previous snapshot. If it matches, test passes. If it doesnt match, it fails.
+
+it('should render correctly',()=>{
+  const {asFragment}=render(<Counter/>);
+  expect(asFragment()).toMatchSnapshot();
+});
+
+Snapshot is always linked with test description and if its edited then new snapshot will be taken.
+We want to track the changes in the UI, so when component scales up, we can see the changes in the UI.
+Treat snapshots as original code and track diff.

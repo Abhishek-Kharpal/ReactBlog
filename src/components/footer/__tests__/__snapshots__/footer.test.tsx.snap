@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer should render successfully 1`] = `
+<DocumentFragment>
+  <div
+    class="bg-gray-800 footer"
+  >
+    <footer
+      class="bg-gray-200 text-center lg:text-left"
+    >
+      <div
+        class="text-gray-700 text-center p-4"
+      >
+        © 2021 Copyright:
+      </div>
+    </footer>
+  </div>
+</DocumentFragment>
+`;
