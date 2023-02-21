@@ -6,6 +6,8 @@ const cardData: Array<{
   date: string;
   readingTime: string;
   tags?: string[];
+  liked: boolean;
+  claps: number;
 }>  = [
   {
     id: 1,
@@ -14,7 +16,9 @@ const cardData: Array<{
     image: 'https://picsum.photos/300/203',
     date: '2019-10-10',
     readingTime: '2 mins',
-    tags: ['photography','travel','winter']
+    tags: ['photography','travel','winter'],
+    claps: 0,
+    liked: false
   },
   {
     id: 2,
@@ -23,7 +27,9 @@ const cardData: Array<{
     image: 'https://picsum.photos/300/202',
     date: '2019-10-10',
     readingTime: '2 mins',
-    tags: ['photography','travel','winter']
+    tags: ['photography','travel','winter'],
+    claps: 4,
+    liked: true
   },
   {
     id: 3,
@@ -32,7 +38,9 @@ const cardData: Array<{
     image: 'https://picsum.photos/300/200',
     date: '2019-10-10',
     readingTime: '2 mins',
-    tags: ['photography','travel','winter']
+    tags: ['photography','travel','winter'],
+    claps: 0,
+    liked: false
   },
   {
     id: 4,
@@ -41,7 +49,9 @@ const cardData: Array<{
     image: 'https://picsum.photos/300/206',
     date: '2019-10-10',
     readingTime: '2 mins',
-    tags: ['photography','travel','winter']
+    tags: ['photography','travel','winter'],
+    claps: 0,
+    liked: false
   },
   {
     id: 5,
@@ -50,7 +60,9 @@ const cardData: Array<{
     image: 'https://picsum.photos/300/214',
     date: '2019-10-10',
     readingTime: '2 mins',
-    tags: ['photography','travel','winter']
+    tags: ['photography','travel','winter'],
+    claps: 2,
+    liked: true
   },
   {
     id: 6,
@@ -59,7 +71,9 @@ const cardData: Array<{
     image: 'https://picsum.photos/300/210', 
     date: '2019-10-10',
     readingTime: '2 mins',
-    tags: ['photography','travel','winter']
+    tags: ['photography','travel','winter'],
+    claps: 10,
+    liked: true
   },
 ];
 export default cardData;

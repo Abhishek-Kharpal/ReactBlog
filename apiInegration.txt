@@ -1,0 +1,55 @@
+create backend url for the app.
+export const BACKEND_URL = 'http://localhost:3000';
+
+create constants for each of urls.
+
+export const GET_BLOG_DATA{
+  url: 'blog-posts',
+  method: 'GET',
+}
+
+utils->makeRequest.ts  
+
+const makeRequest = async (
+  apiEndpoint: {url: string;method: string},
+  dynamicConfig ={}// some of apis like get dont require data but some like post will
+) => {
+  const requestDetails = {
+    method: apiEndpoint.method,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    ...dynamicConfig,
+  };
+  const {data} = await axios(
+    `${BACKEND_URL}/${apiEndpoint.url}`,
+    requestDetails,
+  );
+  }
+}
+
+We need to write tests as well :|
+mock the utils and return mock data.
+
+CORS:
+Cross origin resource sharing.
+We need to allow the request from the frontend to the backend.
+We can do this by adding a middleware in the backend.
+
+npm i cors
+
+import cors from 'cors';
+app.use(cors());
+
+Now we can make the request from the frontend to the backend.
+CORS is only mechanism defined by web browsers so curl or postman will still allow the request.
+
+React dev tool extension and lighthouse.
+
+ALT tag in img is important for accessability and SEO.
+There can be lawsuits if your webpage is not accessable.
+Color contrasts for colorblind people (part of designs).
+How much area is touchable say heart icon in the card footer.
+
+
+(git cherrypick)
